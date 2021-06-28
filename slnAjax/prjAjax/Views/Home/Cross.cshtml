@@ -1,0 +1,47 @@
+﻿@model IEnumerable<prjAjax.Models.Farm>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+<script>
+    $(function () {
+        $('#myTable').DataTable({
+            "lengthMenu": [1, 2, 5, 10, 20],
+            "pageLength": 1
+        });
+    });
+</script>
+@{
+    ViewBag.Title = "全國休閒農業區旅遊資訊";
+}
+
+<h2>全國休閒農業區旅遊資訊</h2>
+<table id="myTable" class="table">
+    <thead>
+        <tr style="background-color:#f0f8ff;">
+                <th>名稱</th>
+                <th>聯絡電話</th>
+                <th>園區介紹</th>
+                <th>地址</th>
+                <th>景點縣市</th>
+                <th>鄉鎮</th>
+                <th>座標</th>
+                <th>圖片</th>
+        </tr>
+    </thead>
+    <tbody class="tbody">
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td class="col-md-2">@item.Name</td>
+                    <td class="col-md-1">@item.Tel</td>
+                    <td class="col-md-12">@item.Introduction</td>
+                    <td class="col-md-1"><a href="https://www.google.com.tw/maps/place/@item.Address" target="_blank" class="btn glyphicon glyphicon-globe">地圖</a></td>
+                    <td class="col">@item.City</td>
+                    <td class="col">@item.Town</td>
+                    <td class="col-md-1">@item.Coordinate</td>
+                    <td class="col"><img src="@item.Photo" style="width:250px;" /></td>
+                </tr>
+                }
+        </tbody>
+</table>
+
