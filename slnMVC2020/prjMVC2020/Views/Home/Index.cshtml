@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BMI計算作業</title>
+</head>
+<body>
+    <header><strong>BMI計算作業</strong></header>
+    <form method="post" action="@Url.Action("BMI")">
+        <div>
+            身高(公分):<input id="Text1" name="height" type="text" value="@ViewBag.height" /><br />
+            體重(公斤):<input id="Text2" name="weight" type="text" value="@ViewBag.weight" /><br />
+            <input id="Submit1" type="submit" value="計算BMI" formaction="@Url.Action("Div")" formmetbod="post" />
+            <hr />
+            @{
+                if (ViewBag.Result < 18.5)
+                {
+                    <p>你的BMI為 @ViewBag.Result，屬於 體重過輕</p>
+                }
+                else if (ViewBag.Result >=18.5 && ViewBag.Result < 24)
+                {
+                    <p>你的BMI為 @ViewBag.Result，屬於 正常範圍</p>
+                }
+                else if (ViewBag.Result >=27 && ViewBag.Result < 30)
+                {
+                    <p>你的BMI為 @ViewBag.Result，屬於 輕度肥胖</p>
+                }
+                else if (ViewBag.Result >=30 && ViewBag.Result < 35)
+                {
+                    <p>你的BMI為 @ViewBag.Result，屬於 中度肥胖</p>
+                }
+                else if (ViewBag.Result >= 35)
+                {
+                    <p>你的BMI為 @ViewBag.Result，屬於 重度肥胖</p>
+                }
+            } 
+
+        </div>
+    </form>
+</body>
+</html>

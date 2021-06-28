@@ -1,0 +1,61 @@
+﻿@model IEnumerable<prjMVC.Models.Student>
+
+@{
+    ViewBag.Title = "學生學期分數";
+}
+
+<h2>學生學期分數</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            學號
+        </th>
+        <th>
+            姓名
+        </th>
+        <th>
+            國文
+        </th>
+        <th>
+            英文
+        </th>
+        <th>
+            數學
+        </th>
+        <th>
+            總分
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chinese)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.English)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Math)
+            </td>
+            <td>
+                @AvgScore(item.Math, item.English, item.Chinese)
+            </td>
+        </tr>
+    }
+</table>
+@helper AvgScore(int math, int eng, int chi)
+{
+    int avg = (math + eng + chi) / 3;
+    <span>@avg</span>
+
+}
+
