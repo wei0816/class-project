@@ -1,0 +1,58 @@
+﻿@model IEnumerable<prj_Linq.Models.ViewEmployee>
+
+@{
+    ViewBag.Title = "查詢員工資料";
+}
+@using (Html.BeginForm())
+{
+<h2>查詢員工資料</h2>
+
+<p>
+    @Html.TextBox("keyword", null, new { placeholder = "請輸入行政區名稱" })
+    <input type="submit" value="搜尋" />
+</p>
+    if (Model.Count() > 0)
+    {
+<table class="table">
+    <tr>
+        <th>
+            員工編號
+        </th>
+        <th>
+            姓名
+        </th>
+        <th>
+            稱呼
+        </th>
+        <th>
+            職務
+        </th>
+        <th>
+            行政區
+        </th>
+        <th></th>
+    </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpGender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpArea)
+        </td>
+    </tr>
+}
+    
+</table>
+    }
+}
